@@ -30,14 +30,25 @@
 
     var Count = React.createClass({
        getInitialState: function () {
-           return {counter: 1}
+           var state = {counter: 1};
+           setInterval(function () {
+               this.setState({counter: this.state.counter + 1});
+           }.bind(this), 1000);
+
+           return state;
        },
        render: function () {
            return <div><h1>Counter</h1>
-                <p>{this.state.counter}</p>
-           </div>
+                <CountDisplay counter = {this.state.counter}></CountDisplay>
+           </div>;
        }
     });
+
+    var CountDisplay = React.createClass({
+        render : function () {
+            return <p>{this.props.counter}</p>;
+        }
+    })
     React.renderComponent(<Quiz books= {['The Lord of The Rings', 'The Iliad']}/>,
         document.getElementById('app'));
 
