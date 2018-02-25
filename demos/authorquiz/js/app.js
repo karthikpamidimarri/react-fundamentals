@@ -6,6 +6,7 @@
         render: function () {
             return <div>
                 <Count/>
+                <Text content = "I am fullllllllllll" />
             {this.props.books.map(function (b) {
                 return <Book title={b} />
             })}
@@ -48,7 +49,24 @@
         render : function () {
             return <p>{this.props.counter}</p>;
         }
-    })
+    });
+
+    var Text = React.createClass({
+        getDefaultProps : function () {
+            return{
+                foreGroundColor : 'green',
+                backGroundColor : 'red'
+            }
+        },
+        render: function () {
+            var styles = {
+                color : this.props.foreGroundColor,
+                backgroundColor : this.props.backGroundColor
+            };
+
+            return <p styles={styles}>{this.props.content}</p>
+        }
+    });
     React.renderComponent(<Quiz books= {['The Lord of The Rings', 'The Iliad']}/>,
         document.getElementById('app'));
 
